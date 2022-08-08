@@ -33,8 +33,9 @@ pipeline {
 
         stage('Build docker image') {
             steps {
-                sh 'systemctl enable docker.service'
-                sh 'systemctl start docker.service'
+              //  Estos pasos hay q hacerlos manuales en el host
+                // sh 'systemctl enable docker.service'
+                // sh 'systemctl start docker.service'
                 sh 'docker build . -t $APP_NAME'
             }
         }
