@@ -2,13 +2,11 @@ pipeline {
 
     environment {
 
-        APP_NAME = "demo-app"
-        NAMESPACE = "default"
-        AGENT_IMAGE = "tferrari92/jenkins-inbound-agent-git-npm-docker"
+        APP_NAME = "demo-app-nodejs-aleman"
 
       // App Repository
-        APP_REPOSITORY = "https://github.com/tomasferrarisenda/demo-app-nodejs.git"
-        APP_REPO_DIRECTORY = "${WORKSPACE}/demo-app-nodejs"
+        APP_REPOSITORY = "https://github.com/tomasferrarisenda/demo-app-nodejs-aleman.git"
+        APP_REPO_DIRECTORY = "${WORKSPACE}/demo-app-nodejs-aleman"
 
         APP_TAG = "${BUILD_NUMBER}"
 
