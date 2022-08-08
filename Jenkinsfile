@@ -16,7 +16,7 @@ pipeline {
         DOCKER_PASSWORD = "hirvyt-werrub-Wemso4"
     }
 
-
+    agent any
   
     stages {
 
