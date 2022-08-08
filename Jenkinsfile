@@ -6,7 +6,6 @@ pipeline {
 
       // App Repository
         APP_REPOSITORY = "https://github.com/tomasferrarisenda/demo-app-nodejs-aleman.git"
-        APP_REPO_DIRECTORY = "${WORKSPACE}/demo-app-nodejs-aleman"
 
         APP_TAG = "${BUILD_NUMBER}"
 
@@ -26,10 +25,8 @@ pipeline {
 
         stage('Correr npm install') {
            steps {  
-                dir("${APP_REPO_DIRECTORY}") {
-                    sh 'chown -R `whoami` /usr/local/lib/node_modules'
-                    sh 'npm install'
-                }
+                sh 'npm install'
+                
             }
         }
 
