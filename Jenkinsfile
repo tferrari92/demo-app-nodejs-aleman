@@ -3,6 +3,7 @@ pipeline {
     environment {
 
         APP_NAME = "demo-app-nodejs-aleman"
+        
 
       // App Repository
         APP_REPOSITORY = "https://github.com/tomasferrarisenda/demo-app-nodejs-aleman.git"
@@ -44,6 +45,12 @@ pipeline {
             }
         }
 
+    }
+
+    post{
+        always {  
+	        deleteDir     
+        }      
     }
 }
 
