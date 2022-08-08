@@ -20,7 +20,7 @@ pipeline {
 
         stage('Clonar repo') {
             steps {
-              sh 'git clone $APP_REPOSITORY'
+              git branch: 'main', changelog: false, poll: false, url: 'https://github.com/tomasferrarisenda/demo-app-nodejs-aleman.git'
             }
         }
 
