@@ -33,8 +33,8 @@ pipeline {
 
         stage('Build docker image') {
             steps {
-                sh 'sudo systemctl enable docker.service'
-                sh 'sudo systemctl start docker.service'
+                sh 'systemctl enable docker.service'
+                sh 'systemctl start docker.service'
                 sh 'docker build . -t $APP_NAME'
             }
         }
