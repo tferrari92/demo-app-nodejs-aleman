@@ -17,26 +17,26 @@ pipeline {
   
     stages {
 
-        stage('Clonar repo') {
+        stage('Checkout app repo') {
             steps {
               git branch: 'main', changelog: false, poll: false, url: 'https://github.com/tomasferrarisenda/demo-app-nodejs-aleman.git'
             }
         }
 
-        stage('Correr npm install') {
+        stage('Run npm install') {
            steps {  
                 sh 'npm install'
                 
             }
         }
 
-        stage('Buildear la imagen') {
+        stage('Build docker image') {
             steps {
                 sh 'docker build . -t $APP_NAME'
             }
         }
 
-        stage('Pushear imagen a repo personal') {
+        stage('Push to registry') {
             steps {
                 sh 'docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD'
                 sh 'docker tag $APP_NAME $DOCKER_USERNAME/$APP_NAME:$APP_TAG'
