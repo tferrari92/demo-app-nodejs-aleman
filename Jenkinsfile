@@ -14,7 +14,9 @@ pipeline {
         DOCKER_PASSWORD = "hirvyt-werrub-Wemso4"
     }
 
-    agent any
+    agent {
+        docker { image 'tferrari92/jenkins-inbound-agent-git-npm-docker' }
+    }
   
     stages {
 
