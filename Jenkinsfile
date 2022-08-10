@@ -65,9 +65,9 @@ pipeline {
                     // remote.user = 'root'
                     // remote.password = 'sendati123'
                     // remote.allowAnyHosts = true
-                    stage('Run container') {
+                    // stage('Run container') {
                         sshCommand remote: remote, command: "docker run tferrari92/$APP_NAME:$APP_TAG"
-                    }
+                    // }
                 }
             }    
         }
