@@ -17,7 +17,7 @@ pipeline {
 
     agent any
 
-    
+
     // agent {
     //     docker { image 'tferrari92/jenkins-inbound-agent-git-npm-docker' }
     // }
@@ -40,8 +40,10 @@ pipeline {
         stage('Build docker image') {
             steps {
               //  Estos pasos hay q hacerlos manuales en el host
-                // sh 'systemctl enable docker.service'
-                // sh 'systemctl start docker.service'
+                // systemctl enable docker.service
+                // systemctl start docker.service
+                // sudo usermod -a -G docker jenkins
+                // sudo service jenkins restart
                 sh 'docker build . -t $APP_NAME'
             }
         }
@@ -53,6 +55,26 @@ pipeline {
                 sh 'docker push $DOCKER_USERNAME/$APP_NAME:$APP_TAG'
             }
         }
+
+        stage('Connect to other VM through SSH and run container') {
+            steps {
+                def remote = [192.168.122.116:22]
+                // remote.name = 'test'
+                // remote.host = 'test.domain.com'
+                remote.user = 'root'
+                remote.password = 'sendati123'
+                remote.allowAnyHosts = true
+                stage('Remote SSH') {
+                    sshCommand remote: remote, command: "docker run tferrari92/$APP_NAME:$APP_TAG"
+                }
+            }
+        }
+
+        // stage('Run app docker image') {
+        //     steps {
+        //         sh 'sudo docker run tferrari92/$APP_NAME:$APP_TAG'
+        //     }
+        // }
 
     }
 
