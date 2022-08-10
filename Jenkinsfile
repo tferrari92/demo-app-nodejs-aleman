@@ -57,19 +57,19 @@ pipeline {
         }
 
         stage('Connect to other VM through SSH and run container') {
-            steps {
-                node {
-                    def remote = [:]
-                    remote.name = '192.168.122.116'
-                    remote.host = '192.168.122.116'
-                    remote.user = 'root'
-                    remote.password = 'sendati123'
-                    remote.allowAnyHosts = true
-                    stage('Run container') {
-                        sshCommand remote: remote, command: "docker run tferrari92/$APP_NAME:$APP_TAG"
-                    }
+            
+            node {
+                def remote = [:]
+                remote.name = '192.168.122.116'
+                remote.host = '192.168.122.116'
+                remote.user = 'root'
+                remote.password = 'sendati123'
+                remote.allowAnyHosts = true
+                stage('Run container') {
+                    sshCommand remote: remote, command: "docker run tferrari92/$APP_NAME:$APP_TAG"
                 }
             }
+            
         }
 
         // stage('Run app docker image') {
