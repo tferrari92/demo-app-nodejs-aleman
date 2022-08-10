@@ -58,9 +58,9 @@ pipeline {
 
         stage('Connect to other VM through SSH and run container') {
             steps {
-                def remote = [192.168.122.116:22]
+                def remote = [:]
                 // remote.name = 'test'
-                // remote.host = 'test.domain.com'
+                remote.host = '192.168.122.116'
                 remote.user = 'root'
                 remote.password = 'sendati123'
                 remote.allowAnyHosts = true
