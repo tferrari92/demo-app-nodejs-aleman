@@ -57,7 +57,6 @@ pipeline {
         }
 
         stage('Connect to other VM through SSH and run container') {
-            
             node {
                 def remote = [:]
                 remote.name = '192.168.122.116'
@@ -69,7 +68,6 @@ pipeline {
                     sshCommand remote: remote, command: "docker run tferrari92/$APP_NAME:$APP_TAG"
                 }
             }
-            
         }
 
         // stage('Run app docker image') {
