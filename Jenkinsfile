@@ -58,7 +58,7 @@ pipeline {
 
         stage('Connect to other VM through SSH and run container') {
             steps {
-                node {
+                node(ssh-server) {
                     // def remote = [:]
                     // remote.name = '192.168.122.116'
                     // remote.host = '192.168.122.116'
