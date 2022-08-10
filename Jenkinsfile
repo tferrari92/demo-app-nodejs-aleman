@@ -1,3 +1,10 @@
+def remote = [:]
+remote.name = '192.168.122.116'
+remote.host = '192.168.122.116'
+remote.user = 'root'
+remote.password = 'sendati123'
+remote.allowAnyHosts = true
+
 pipeline {
 
     environment {
@@ -11,13 +18,6 @@ pipeline {
         DOCKER_USERNAME = "tferrari92"
         DOCKER_PASSWORD = "hirvyt-werrub-Wemso4"
     }
-
-    def remote = [:]
-    remote.name = '192.168.122.116'
-    remote.host = '192.168.122.116'
-    remote.user = 'root'
-    remote.password = 'sendati123'
-    remote.allowAnyHosts = true
 
     agent any
 
