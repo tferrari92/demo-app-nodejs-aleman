@@ -1,8 +1,8 @@
 def remote = [:]
 remote.name = '192.168.122.116'
 remote.host = '192.168.122.116'
-remote.user = 'root'
-remote.password = 'sendati123'
+remote.user = 'server'
+remote.password = 'server'
 remote.allowAnyHosts = true
 
 pipeline {
@@ -59,7 +59,7 @@ pipeline {
         stage('Connect to other VM through SSH and run container') {
             steps {
                 // sshCommand remote: remote, command: "docker run $DOCKER_USERNAME/$APP_NAME:$APP_TAG"
-                sshCommand remote: remote, command: "docker run -d $DOCKER_USERNAME/$APP_NAME:35"
+                sshCommand remote: remote, command: "sudo docker run -d $DOCKER_USERNAME/$APP_NAME:35"
             }    
         }
     }
