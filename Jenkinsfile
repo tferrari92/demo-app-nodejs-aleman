@@ -39,11 +39,14 @@ pipeline {
 
         stage('Build docker image') {
             steps {
-              //  Estos pasos hay q hacerlos manuales en el host
-                // systemctl enable docker.service
-                // systemctl start docker.service
-                // sudo usermod -a -G docker jenkins
-                // sudo service jenkins restart
+                // En el host hay q habiliar jenkins para usar docker:
+                //      1. Habilitar al usuario a usar Docker:
+                //          a. $ sudo groupadd docker 
+                //          b. $ sudo usermod -aG docker jenkins
+                //          c. Restart
+                //      2. Configurar la VM para q inicialice Docker al bootear:
+                //          a. $ sudo systemctl enable docker.service
+                //          b. $ sudo systemctl enable containerd.service
                 sh 'docker build . -t $APP_NAME'
             }
         }
@@ -59,11 +62,13 @@ pipeline {
         stage('Connect to other VM through SSH and run container') {
             steps {
                 // En el server hay q habiliar al usuario para usar docker:
-                //      1. $ sudo usermod -a -G docker <nombre de usuario aqui>
-                //      2. Logout y volver a entrar
-                // Al reiniciar el server hay que:
-                //      1. Iniciar docker: $ systemctl restart docker
-
+                //      1. Habilitar al usuario a usar Docker:
+                //          a. $ sudo groupadd docker 
+                //          b. $ sudo usermod -aG docker <nombre de usuario aqui>
+                //          c. Restart
+                //      2. Configurar la VM para q inicialice Docker al bootear:
+                //          a. $ sudo systemctl enable docker.service
+                //          b. $ sudo systemctl enable containerd.service
                 sshCommand remote: remote, command: "docker run -d $DOCKER_USERNAME/$APP_NAME:$APP_TAG"
             }    
         }
