@@ -21,7 +21,7 @@ pipeline {
 
     agent any
 
-    // Pruebas: 1
+    // Pruebas: 2
   
     stages {
 
