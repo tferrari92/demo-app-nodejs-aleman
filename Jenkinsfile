@@ -20,7 +20,6 @@ pipeline {
     }
 
     agent any
-// borrar esto
   
     stages {
 
