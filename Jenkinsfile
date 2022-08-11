@@ -58,8 +58,7 @@ pipeline {
 
         stage('Connect to other VM through SSH and run container') {
             steps {
-                // sshCommand remote: remote, command: "docker run $DOCKER_USERNAME/$APP_NAME:$APP_TAG"
-                sshCommand remote: remote, command: "sudo docker run -d $DOCKER_USERNAME/$APP_NAME:35"
+                sshCommand remote: remote, command: "sudo docker run -d $DOCKER_USERNAME/$APP_NAME:$APP_TAG"
             }    
         }
     }
