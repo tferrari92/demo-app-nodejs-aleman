@@ -20,8 +20,6 @@ pipeline {
     }
 
     agent any
-
-    // Pruebas: 2
   
     stages {
 
